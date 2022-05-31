@@ -1,36 +1,32 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the workflow will run
+name: Merge upstream branches
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  schedule:
+    # actually, ~5 minutes is the highest
+    # effective frequency you will get
+    - cron:  '*/1 * * * *'
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  merge:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - uses: actions/checkout@v2
+      - name: Merge upstream
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git config --global user.name 'bobo'
+          git config --global user.email 'm18518782315@163.com'
+          git pull --unshallow
+          git remote add upstream https://github.com/SanZangJun/es-test.git
+          git fetch upstream
+    # Neither forget the -b opt,
+    # the feature/x ref is ambiguous at this stage
+          git checkout master
+          git merge --no-edit upstream/master
+          git push origin master
+    #git checkout master
+    #git merge --no-edit upstream/master
+    #git push origin master
+
+    #sync tag
+          git fetch upstream --tags
+          git push --tags
+    # etc
