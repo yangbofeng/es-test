@@ -14,13 +14,15 @@ jobs:
         run: |
           git config --global user.name 'bobo'
           git config --global user.email 'm18518782315@163.com'
-          git pull --unshallow
+          git pull
           git remote add upstream https://github.com/SanZangJun/es-test.git
           git fetch upstream
     # Neither forget the -b opt,
     # the feature/x ref is ambiguous at this stage
-          git checkout master
-          git merge --no-edit upstream/master
+          # git checkout master
+          # git merge --no-edit upstream/master
+          #   git pull --unshallow
+          git merge upstream/master
           git push origin master
     #git checkout master
     #git merge --no-edit upstream/master
