@@ -550,6 +550,7 @@ public class EsUtil {
                 highlightBuilder.preTags("<span style='color:red'>");
                 highlightBuilder.postTags("</span>");
                 sourceBuilder.highlighter(highlightBuilder);
+                sourceBuilder.size(1000000);
                 request.source(sourceBuilder);
             }
             SearchResponse response = client.search(request, RequestOptions.DEFAULT);

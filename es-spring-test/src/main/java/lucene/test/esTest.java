@@ -44,6 +44,7 @@ public class esTest {
     //批量上传文件  attachment
     public static void simplePatchInsert(List<File> files){
         List<Map> dataList = new ArrayList<>();
+        long timeout = 100000;
         try {
             for (File file:files){
                 InputStream inputStream = new FileInputStream(file);

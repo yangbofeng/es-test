@@ -35,8 +35,9 @@ public class EsFileController {
         SearchSourceBuilder srb = new SearchSourceBuilder();
         //srb.query(QueryBuilders.matchPhraseQuery("attachment.content", file).analyzer("ik_smart"));//smart max_word
         srb.query(QueryBuilders.matchPhraseQuery("attachment.content", file));//smart max_word
-        List<Map> pdftest = EsUtil.selectDocumentListHighLight("pdftest", srb, FileMessage.class, "attachment.content");
+        List<Map> pdftest = EsUtil.selectDocumentListHighLight("fileindex", srb, FileMessage.class, "attachment.content");
         repMap.put("result",pdftest);
+        repMap.put("total",pdftest.size());
         return repMap;
     }
 
