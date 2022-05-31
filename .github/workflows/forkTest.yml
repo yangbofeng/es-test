@@ -41,4 +41,4 @@ jobs:
           git merge --no-edit upstream/master
           git push origin master
           git fetch upstream --tags
-          git push --tags.
+          git push --tags
