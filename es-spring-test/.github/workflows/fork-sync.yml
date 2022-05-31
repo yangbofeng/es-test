@@ -7,22 +7,20 @@ on:
     - cron:  '*/1 * * * *'
 jobs:
   merge:
-    runs-on: macos-10.15
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Merge upstream
         run: |
           git config --global user.name 'bobo'
           git config --global user.email 'm18518782315@163.com'
-          git pull
+          git pull --unshallow
           git remote add upstream https://github.com/SanZangJun/es-test.git
           git fetch upstream
     # Neither forget the -b opt,
     # the feature/x ref is ambiguous at this stage
-          # git checkout master
-          # git merge --no-edit upstream/master
-          #   git pull --unshallow
-          git merge upstream/master
+          git checkout master
+          git merge --no-edit upstream/master
           git push origin master
     #git checkout master
     #git merge --no-edit upstream/master
