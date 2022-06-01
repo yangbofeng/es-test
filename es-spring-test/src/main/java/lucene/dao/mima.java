@@ -6,6 +6,10 @@ public class mima {
     private final String hahah = "ceshi";
 
     private final String ceshi = "ceshi";
+
+    private final String fork = "ceshi";
+
+
 }
 
 
