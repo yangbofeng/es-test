@@ -10,6 +10,8 @@ public class mima {
     private final String fork = "ceshi";
 
 
+    private final String rk = "ceshi";
+
 }
 
 
